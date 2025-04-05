@@ -1,0 +1,31 @@
+{
+  "name": "celeste-cms",
+  "version": "0.1.0",
+  "description": "A flexible content management platform that will power multiple bilingual websites",
+  "main": "index.js",
+  "scripts": {
+    "setup-airtable": "node scripts/setup-airtable.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Discerneco/CeLeste-CMS.git"
+  },
+  "keywords": [
+    "cms",
+    "nextjs",
+    "airtable",
+    "bilingual",
+    "content-management"
+  ],
+  "author": "Discerneco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Discerneco/CeLeste-CMS/issues"
+  },
+  "homepage": "https://github.com/Discerneco/CeLeste-CMS#readme",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1"
+  }
+}

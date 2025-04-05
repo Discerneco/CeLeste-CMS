@@ -1,0 +1,13 @@
+{
+  "name": "celeste-airtable-setup",
+  "version": "1.0.0",
+  "description": "Setup script for CeLeste CMS Airtable integration",
+  "main": "airtable-setup.js",
+  "scripts": {
+    "setup": "node airtable-setup.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1"
+  }
+}
