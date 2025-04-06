@@ -4,7 +4,6 @@ import { env } from '$env/dynamic/private';
 
 /**
  * GET handler for site configuration
- * @param {Object} request - The request object
  * @returns {Promise<Response>} JSON response with site configuration
  */
 export async function GET() {

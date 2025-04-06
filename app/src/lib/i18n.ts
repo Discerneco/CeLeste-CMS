@@ -10,8 +10,15 @@ export const supportedLocales = ['en', 'pt'];
 export const defaultLocale = 'en';
 
 // Register dictionaries
-register('en', async () => (await import('../locales/en.json')).default);
-register('pt', async () => (await import('../locales/pt.json')).default);
+// Use a type assertion to handle the module import errors
+register('en', async () => {
+  const module = await import('../locales/en.json');
+  return module.default || module;
+});
+register('pt', async () => {
+  const module = await import('../locales/pt.json');
+  return module.default || module;
+});
 
 // Initialize i18n
 export function setupI18n() {

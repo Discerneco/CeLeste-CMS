@@ -4,7 +4,6 @@ import { env } from '$env/dynamic/private';
 
 /**
  * GET handler for event details
- * @param {Object} request - The request object
  * @returns {Promise<Response>} JSON response with event details
  */
 export async function GET() {
