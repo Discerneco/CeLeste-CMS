@@ -1,0 +1,64 @@
+{
+  "app": {
+    "name": "CeLeste CMS",
+    "tagline": "A flexible multilanguage content management platform"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "news": "News",
+    "events": "Events",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "home": {
+    "welcome": "Welcome to CeLeste CMS",
+    "description": "A flexible multilanguage content management platform for bilingual websites.",
+    "temple_reunion": "Temple Reunion Site",
+    "temple_description": "The first implementation of CeLeste CMS is a bilingual Temple reunion and fundraising website."
+  },
+  "news": {
+    "latest": "Latest News",
+    "featured": "Featured News",
+    "read_more": "Read More",
+    "no_news": "No news available.",
+    "published_on": "Published on {date}"
+  },
+  "events": {
+    "upcoming": "Upcoming Events",
+    "countdown": "Countdown to Temple Reunion",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "location": "Location",
+    "register_now": "Register Now"
+  },
+  "fund": {
+    "title": "Fund Application",
+    "description": "Apply for travel fund assistance for the Temple Reunion.",
+    "amount": "Amount",
+    "reason": "Reason",
+    "submit": "Submit Application",
+    "status": "Application Status",
+    "new": "New",
+    "under_review": "Under Review",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred. Please try again.",
+    "success": "Success!",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "language": "Language",
+    "english": "English",
+    "portuguese": "Portuguese"
+  }
+}

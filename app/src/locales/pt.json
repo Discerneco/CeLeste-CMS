@@ -1,0 +1,64 @@
+{
+  "app": {
+    "name": "CeLeste CMS",
+    "tagline": "Uma plataforma flexível de gerenciamento de conteúdo multilíngue"
+  },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "news": "Notícias",
+    "events": "Eventos",
+    "contact": "Contato",
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "dashboard": "Painel",
+    "profile": "Perfil",
+    "logout": "Sair"
+  },
+  "home": {
+    "welcome": "Bem-vindo ao CeLeste CMS",
+    "description": "Uma plataforma flexível de gerenciamento de conteúdo multilíngue para sites bilíngues.",
+    "temple_reunion": "Site de Reunião do Templo",
+    "temple_description": "A primeira implementação do CeLeste CMS é um site bilíngue de reunião e arrecadação de fundos para o Templo."
+  },
+  "news": {
+    "latest": "Últimas Notícias",
+    "featured": "Notícias em Destaque",
+    "read_more": "Leia Mais",
+    "no_news": "Nenhuma notícia disponível.",
+    "published_on": "Publicado em {date}"
+  },
+  "events": {
+    "upcoming": "Próximos Eventos",
+    "countdown": "Contagem Regressiva para a Reunião do Templo",
+    "days": "Dias",
+    "hours": "Horas",
+    "minutes": "Minutos",
+    "seconds": "Segundos",
+    "location": "Localização",
+    "register_now": "Inscreva-se Agora"
+  },
+  "fund": {
+    "title": "Solicitação de Fundos",
+    "description": "Solicite assistência financeira para viagem à Reunião do Templo.",
+    "amount": "Valor",
+    "reason": "Motivo",
+    "submit": "Enviar Solicitação",
+    "status": "Status da Solicitação",
+    "new": "Nova",
+    "under_review": "Em Análise",
+    "approved": "Aprovada",
+    "rejected": "Rejeitada"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro. Por favor, tente novamente.",
+    "success": "Sucesso!",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "submit": "Enviar",
+    "language": "Idioma",
+    "english": "Inglês",
+    "portuguese": "Português"
+  }
+}
