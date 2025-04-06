@@ -1,18 +1,18 @@
 import Airtable from 'airtable';
-import dotenv from 'dotenv';
+import { env } from '$env/dynamic/private';
 
-// Load environment variables from .env file
-dotenv.config();
-
-// Configure Airtable with Personal Access Token
+// Configure Airtable with API Key
 Airtable.configure({
-  apiKey: process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN,
+  apiKey: env.AIRTABLE_API_KEY,
 });
 
 // Base instances
-export const platformConfigBase = Airtable.base(process.env.AIRTABLE_PLATFORM_CONFIG_BASE_ID || '');
-export const templeContentBase = Airtable.base(process.env.AIRTABLE_TEMPLE_CONTENT_BASE_ID || '');
-export const templeUsersBase = Airtable.base(process.env.AIRTABLE_TEMPLE_USERS_BASE_ID || '');
+export const platformConfigBase = Airtable.base(env.AIRTABLE_CONFIG_BASE_ID || '');
+export const templeContentBase = Airtable.base(env.AIRTABLE_CONTENT_BASE_ID || '');
+export const templeUsersBase = Airtable.base(env.AIRTABLE_USERS_BASE_ID || '');
+
+// Site ID
+const TEMPLE_SITE_ID = env.TEMPLE_SITE_ID || '';
 
 // Types
 export interface AirtableRecord {
@@ -65,19 +65,35 @@ export const normalizeRecords = <T extends AirtableRecord>(records: any[]): T[] 
 };
 
 // Get site configuration
-export const getSiteConfig = async (siteId = process.env.TEMPLE_SITE_ID): Promise<SiteConfig> => {
+export const getSiteConfig = async (siteId = TEMPLE_SITE_ID): Promise<SiteConfig> => {
   try {
-    const records = await platformConfigBase('Sites')
-      .select({
-        filterByFormula: `RECORD_ID() = '${siteId}'`,
-      })
-      .firstPage();
+    console.log('Getting site config with ID:', siteId);
+    console.log('Using base ID:', env.AIRTABLE_CONFIG_BASE_ID);
     
-    if (records.length === 0) {
-      throw new Error(`Site with ID ${siteId} not found`);
+    // First, let's check if the Sites table exists
+    try {
+      // Get all records to check if the table exists
+      const allRecords = await platformConfigBase('Sites').select().firstPage();
+      console.log('Sites table exists with', allRecords.length, 'records');
+      
+      // Then try to find our specific site
+      const records = await platformConfigBase('Sites')
+        .select({
+          // Use RECORD_ID() to find the record by its ID
+          filterByFormula: `RECORD_ID() = '${siteId}'`,
+        })
+        .firstPage();
+      
+      if (records.length === 0) {
+        throw new Error(`Site with ID ${siteId} not found`);
+      }
+      
+      return normalizeRecords<SiteConfig>(records)[0];
+    } catch (error) {
+      console.error('Error checking Sites table:', error);
+      throw error;
     }
     
-    return normalizeRecords<SiteConfig>(records)[0];
   } catch (error) {
     console.error('Error fetching site config:', error);
     throw error;
@@ -86,13 +102,20 @@ export const getSiteConfig = async (siteId = process.env.TEMPLE_SITE_ID): Promis
 
 // Get news for a site
 export const getNews = async (
-  siteId = process.env.TEMPLE_SITE_ID, 
+  siteId = TEMPLE_SITE_ID, 
   options: { featured?: boolean; limit?: number } = {}
 ): Promise<NewsItem[]> => {
   const { featured, limit } = options;
+  console.log('Getting news with site ID:', siteId);
+  console.log('Using content base ID:', env.AIRTABLE_CONTENT_BASE_ID);
   
   try {
-    let filterFormula = `siteId = '${siteId}'`;
+    // First, let's check if the News table exists
+    const allRecords = await templeContentBase('News').select().firstPage();
+    console.log('News table exists with', allRecords.length, 'records');
+    
+    // Check if the siteId is the record ID or a field value
+    let filterFormula = `OR(RECORD_ID() = '${siteId}', {siteId} = '${siteId}')`;
     
     if (featured) {
       filterFormula = `AND(${filterFormula}, featured = TRUE())`;
@@ -114,11 +137,18 @@ export const getNews = async (
 };
 
 // Get event details
-export const getEventDetails = async (siteId = process.env.TEMPLE_SITE_ID): Promise<EventDetails | null> => {
+export const getEventDetails = async (siteId = TEMPLE_SITE_ID): Promise<EventDetails | null> => {
   try {
+    console.log('Getting event details with site ID:', siteId);
+    console.log('Using content base ID:', env.AIRTABLE_CONTENT_BASE_ID);
+    
+    // First, let's check if the Event table exists
+    const allRecords = await templeContentBase('Event').select().firstPage();
+    console.log('Event table exists with', allRecords.length, 'records');
+    
     const records = await templeContentBase('Event')
       .select({
-        filterByFormula: `siteId = '${siteId}'`,
+        filterByFormula: `OR(RECORD_ID() = '${siteId}', {siteId} = '${siteId}')`,
       })
       .firstPage();
     

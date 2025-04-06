@@ -30,6 +30,7 @@ declare module '$env/static/private' {
 	export const AIRTABLE_CONFIG_BASE_ID: string;
 	export const AIRTABLE_CONTENT_BASE_ID: string;
 	export const AIRTABLE_USERS_BASE_ID: string;
+	export const TEMPLE_SITE_ID: string;
 	export const TERM_PROGRAM: string;
 	export const NODE: string;
 	export const INIT_CWD: string;
@@ -127,6 +128,7 @@ declare module '$env/dynamic/private' {
 		AIRTABLE_CONFIG_BASE_ID: string;
 		AIRTABLE_CONTENT_BASE_ID: string;
 		AIRTABLE_USERS_BASE_ID: string;
+		TEMPLE_SITE_ID: string;
 		TERM_PROGRAM: string;
 		NODE: string;
 		INIT_CWD: string;
