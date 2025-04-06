@@ -76,4 +76,6 @@ This project is open source. Contributions are welcome!
 
 ## License
 
-[MIT License](./LICENSE)
+[MIT License with Commons Clause](./LICENSE)
+
+This project is licensed under the MIT License with Commons Clause, which means it's free to use, modify, and distribute, but you cannot sell the software or using it as a part of a commercial SaaS offering without permission. See the LICENSE file for the full terms.
