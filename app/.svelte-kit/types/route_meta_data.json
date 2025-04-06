@@ -1,0 +1,17 @@
+{
+	"/": [
+		"src/routes/+page.server.js"
+	],
+	"/api/events": [
+		"src/routes/api/events/+server.js"
+	],
+	"/api/news": [
+		"src/routes/api/news/+server.js"
+	],
+	"/api/site-config": [
+		"src/routes/api/site-config/+server.js"
+	],
+	"/debug": [
+		"src/routes/debug/+page.server.js"
+	]
+}

@@ -1,15 +1,18 @@
 import Airtable from 'airtable';
-import { env } from '$env/dynamic/private';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 // Configure Airtable with Personal Access Token
 Airtable.configure({
-  apiKey: env.AIRTABLE_PERSONAL_ACCESS_TOKEN,
+  apiKey: process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN,
 });
 
 // Base instances
-export const platformConfigBase = Airtable.base(env.AIRTABLE_PLATFORM_CONFIG_BASE_ID);
-export const templeContentBase = Airtable.base(env.AIRTABLE_TEMPLE_CONTENT_BASE_ID);
-export const templeUsersBase = Airtable.base(env.AIRTABLE_TEMPLE_USERS_BASE_ID);
+export const platformConfigBase = Airtable.base(process.env.AIRTABLE_PLATFORM_CONFIG_BASE_ID || '');
+export const templeContentBase = Airtable.base(process.env.AIRTABLE_TEMPLE_CONTENT_BASE_ID || '');
+export const templeUsersBase = Airtable.base(process.env.AIRTABLE_TEMPLE_USERS_BASE_ID || '');
 
 // Types
 export interface AirtableRecord {
@@ -62,7 +65,7 @@ export const normalizeRecords = <T extends AirtableRecord>(records: any[]): T[] 
 };
 
 // Get site configuration
-export const getSiteConfig = async (siteId = env.TEMPLE_SITE_ID): Promise<SiteConfig> => {
+export const getSiteConfig = async (siteId = process.env.TEMPLE_SITE_ID): Promise<SiteConfig> => {
   try {
     const records = await platformConfigBase('Sites')
       .select({
@@ -83,7 +86,7 @@ export const getSiteConfig = async (siteId = env.TEMPLE_SITE_ID): Promise<SiteCo
 
 // Get news for a site
 export const getNews = async (
-  siteId = env.TEMPLE_SITE_ID, 
+  siteId = process.env.TEMPLE_SITE_ID, 
   options: { featured?: boolean; limit?: number } = {}
 ): Promise<NewsItem[]> => {
   const { featured, limit } = options;
@@ -111,7 +114,7 @@ export const getNews = async (
 };
 
 // Get event details
-export const getEventDetails = async (siteId = env.TEMPLE_SITE_ID): Promise<EventDetails | null> => {
+export const getEventDetails = async (siteId = process.env.TEMPLE_SITE_ID): Promise<EventDetails | null> => {
   try {
     const records = await templeContentBase('Event')
       .select({

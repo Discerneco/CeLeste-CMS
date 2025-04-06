@@ -1,5 +1,8 @@
 import { browser } from '$app/environment';
-import { init, register, locale, dictionary, getLocaleFromNavigator } from 'svelte-i18n';
+import { init, register, locale as i18nLocale, dictionary, getLocaleFromNavigator } from 'svelte-i18n';
+
+// Re-export the locale store for use in components
+export const locale = i18nLocale;
 import { derived, writable } from 'svelte/store';
 
 // Create a store for language detection
