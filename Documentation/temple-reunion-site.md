@@ -102,8 +102,9 @@ The Temple Reunion site will be the first implementation of the CeLeste CMS plat
 
 ## Technical Requirements
 
-### Hosting & Domain
-- Netlify hosting (free tier)
+### Hosting & Deployment
+- Vercel for hosting and deployment
+- Cloudflare CDN for optimal global performance
 - Custom domain (to be acquired)
 
 ### Data Management

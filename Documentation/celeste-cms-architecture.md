@@ -1,7 +1,7 @@
 # CeLeste CMS Platform
 
 ## Project Overview
-CeLeste CMS is a flexible content management platform that will power multiple bilingual websites. The first implementation will be a Temple reunion and fundraising website.
+CeLeste CMS is a flexible multilanguage content management platform (similar to a WordPress competitor). The first implementation will be a Temple reunion and fundraising website with bilingual support.
 
 ### Temple Reunion Site Features
 A bilingual (Brazilian Portuguese and American English) website with two main features:
@@ -26,7 +26,7 @@ A bilingual (Brazilian Portuguese and American English) website with two main fe
 │  └───────────────────────────────┘    │     │  │                  │
 │                                       │     │  └───────────────┘  │
 │  ┌───────────────────────────────┐    │     │                     │
-│  │      Future Sites...          │    │     │                     │
+│  │      Future Sites (Maybe)     │    │     │                     │
 │  └───────────────────────────────┘    │     │                     │
 │                                       │     │                     │
 │  ┌───────────────┐                    │     │                     │
@@ -36,9 +36,12 @@ A bilingual (Brazilian Portuguese and American English) website with two main fe
                    │                                                │
                    │                                                │
                    ▼                                                │
-         ┌─────────────────────┐                                    │
-         │      Netlify        │                                    │
-         └─────────────────────┘                                    │
+┌─────────────────────────────────────────────────────────────────┐│
+│                          Deployment                             ││
+│  ┌─────────────────┐    ┌─────────────────┐ ┌────────────────┐ ││
+│  │      Vercel     │───▶│  Cloudflare CDN │─▶│    End Users  │ ││
+│  └─────────────────┘    └─────────────────┘ └────────────────┘ ││
+└─────────────────────────────────────────────────────────────────┘│
                                                                     │
          ┌─────────────────────┐                                    │
          │  Future Flutter App │◀───────────────────────────────────┘
@@ -48,11 +51,12 @@ A bilingual (Brazilian Portuguese and American English) website with two main fe
 ## Technical Stack
 
 ### CeLeste CMS Platform
-- **Framework**: Next.js
+- **Framework**: SvelteKit
 - **Styling**: Tailwind CSS
-- **Internationalization**: next-intl
-- **Authentication**: NextAuth.js
-- **Deployment**: Netlify
+- **Internationalization**: svelte-i18n
+- **Authentication**: Auth.js (formerly NextAuth.js)
+- **Deployment**: Vercel
+- **CDN**: Cloudflare CDN
 - **Domain**: Custom .com domain for the platform
 
 ### Temple Reunion Site (First Implementation)
@@ -61,7 +65,7 @@ A bilingual (Brazilian Portuguese and American English) website with two main fe
 
 ### Backend
 - **Database**: Airtable
-- **Serverless Functions**: Next.js API routes (deployed via Netlify)
+- **Serverless Functions**: SvelteKit endpoints (deployed via Vercel)
 - **Content API**: Custom API for retrieving site-specific content
 
 ## Airtable Structure
@@ -124,17 +128,17 @@ A bilingual (Brazilian Portuguese and American English) website with two main fe
 
 ## Key Features Implementation
 
-### Bilingual Support
+### Multilanguage Support
 - Language toggle in header
-- Content stored in both languages in Airtable
+- Content stored in multiple languages in Airtable
 - URL structure with language prefix (e.g., `/en/news`, `/pt/noticias`)
 - Language detection based on browser settings
 
 ### Dynamic Content Pages
-- Next.js will use Incremental Static Regeneration (ISR) for content pages:
+- SvelteKit will use server endpoints and SSR for content pages:
   - Fast loading experience
-  - Content updates every few minutes
-  - Lower load on Airtable API
+  - Content updates reflected immediately
+  - Efficient data fetching from Airtable API
 
 ### Authentication Flow
 1. User registers/logs in via email
@@ -160,14 +164,14 @@ A bilingual (Brazilian Portuguese and American English) website with two main fe
 
 ## Deployment Strategy
 1. GitHub repository setup (open source)
-2. Netlify connected to GitHub repository
-3. Environment variables for API keys
-4. Automatic deployments on push to main branch
+2. Vercel connected to GitHub repository for deployment
+3. Cloudflare CDN for performance optimization
+4. Environment variables for API keys
+5. Automatic deployments on push to main branch
 
 ## Future Platform Development
-- Admin dashboard for managing sites
-- Template system for faster site creation
-- Custom domain management
+- Admin dashboard for managing content
 - Analytics integration
-- Additional site templates and themes
+- Additional templates and themes
 - API access for third-party integrations
+- Potential multisite functionality (maybe in future releases)
